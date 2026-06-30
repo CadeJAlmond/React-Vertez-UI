@@ -16,8 +16,6 @@ export default function AccordionExample() {
 
     return (
         <div style={{ marginBottom: '2rem', paddingBottom: '1rem', borderBottom: `1px solid ${vertexThemeColors.border}` }}>
-            <h2 style={{ color: vertexThemeColors.primary, fontSize: '2rem', margin: '0 0 1.5rem 0' }}>Title : Custom Vertez Accordion</h2>
-
             <div style={{ padding: '1.5rem', background: vertexThemeColors.surface, borderRadius: '8px', marginBottom: '2rem', maxWidth: '500px' }}>
                 <Accordion items={accordionItems} />
             </div>
@@ -28,7 +26,7 @@ export default function AccordionExample() {
                     A collapsible accordion component that reveals content when a section header is clicked. Supports both single-select (one section open at a time) and multi-select modes. If children are provided, they are rendered directly; otherwise, the accordion is constructed from the items array.
                 </p>
 
-                <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Argument : items</h3>
+                <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Argument : items *</h3>
                 <p style={{ paddingLeft: '1.5rem', fontSize: '1rem', color: vertexThemeColors.textSecondary, lineHeight: '1.5' }}>
                     <strong>Type:</strong> <code>Array</code><br />
                     An array of item definitions. Each item should have at least a <code>label</code> and <code>content</code>. Optionally include an <code>ItemComponent</code> to use a custom wrapper; all other props get spread into it.

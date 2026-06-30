@@ -53,7 +53,7 @@ export default function Input({
     w: "w-[85%]",
     pl: "pl-[0px]",
     bg: "bg-[transparent]",
-    text: "text-[17px] text-[#f4f4f5]/80",
+    text: "text-[13px] text-[#f4f4f5]/80"
   };
   // Apply custom styles on top of the default styles
   const inputStyling = applyCustomStyles(defaultStylings, styles);

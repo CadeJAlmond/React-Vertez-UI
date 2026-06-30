@@ -19,7 +19,7 @@ export default function Checkbox({
 }) {
     // Default styling for the checkbox and label
     const defaultStylings = {
-        checkbox: "toggle-label block overflow-hidden h-6 rounded-full bg-gray-700 cursor-pointer",
+        checkbox: "toggle-label block overflow-hidden rounded-full bg-gray-700 cursor-pointer",
     };
 
     const onClick = (e) => {
@@ -31,8 +31,8 @@ export default function Checkbox({
     const checkboxStyles = applyCustomStyles(defaultStylings.checkbox, {});
 
     return (
-        <span className="flex items-center justify-between">
-            <p className="text-nowrap text-sm font-medium text-[#ffffffcc] flex mb-[6px] tracking-wide flex items-center justify-between">
+        <span className="flex gap-[15px]">
+            <p className="text-nowrap text-sm font-medium text-[#ffffffcc] flex tracking-wide flex items-center justify-between">
                 {text}
             </p>
             <input

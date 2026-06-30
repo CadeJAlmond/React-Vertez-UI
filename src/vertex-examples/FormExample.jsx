@@ -7,7 +7,7 @@ import Form from "../vertez/Form";
 import Checkbox from "../vertez/CheckBox";
 import DualInput from "../vertez/DualInput";
 import { useState } from "react";
-import { vertexThemeColors } from '../VertexStyles';
+import { vertexThemeBG, vertexThemeColors } from '../VertexStyles';
 
 export default function FormExample() {
     /* --=== Default Form Values ===-- */
@@ -18,51 +18,56 @@ export default function FormExample() {
             text: "IS ROTH IRA?",
             value: false,
             InputComponent: Checkbox,
+            required: true,
         },
         initialBalance: {
             text: "($) INITIAL BALANCE",
             value: 0, max: 1_000_000, min: 0,
             InputComponent: DualInput,
+            required: true,
         },
         expectedStockGrowth: {
             text: "(%) EXPECTED ANNUAL GROWTH",
             value: 13, max: 80, min: 1,
             InputComponent: DualInput,
+            required: true,
         },
         age: {
             text: "CURRENT AGE",
             value: 22, max: 95, min: 1,
             InputComponent: DualInput,
+            required: true,
         },
         retirementAge: {
             text: "AGE OF RETIREMENT",
             value: 65, max: 95, min: 20,
             InputComponent: DualInput,
+            required: true,
         },
         annualIncome: {
             text: "($) ANNUAL INCOME",
             value: 65_000, max: 1_000_000, min: 5_000,
             InputComponent: DualInput,
+            required: true,
         },
         investing: {
             text: "(%) PERCENT OF INCOME TO INVEST",
             value: 20, max: 100, min: 1,
             InputComponent: DualInput,
+            required: true,
         },
     };
 
     const [formValues, setFormValues] = useState(defaultRetirementFormValues);
 
     return (
-        <div style={{ marginBottom: '2rem', paddingBottom: '1rem', borderBottom: `1px solid ${vertexThemeColors.border}` }}>
-            <h2 style={{ color: vertexThemeColors.primary, fontSize: '2rem', margin: '0 0 1.5rem 0' }}>Title : Custom Vertez Form </h2>
-
-            <div style={{ width: '500px', padding: '1.5rem', background: vertexThemeColors.surface, borderRadius: '8px', marginBottom: '2rem' }}>
+        <div className="mb-[2rem] [b-[1rem]">
+            <div className="mb-[2rem] ">
                 <Form
                     title={"Retirement Planner"}
                     formInputsData={formValues}
                     formValueUpdate={(newState) => setFormValues(newState.state)}
-                    styles={{ "w": "min-w-[480px] max-w-[480px]" }}
+                    styles={{ "w": "min-w-[480px] max-w-[480px]", "p": "p-[1.5rem]" }}
                 />
             </div>
 

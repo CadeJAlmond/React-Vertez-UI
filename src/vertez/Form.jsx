@@ -6,6 +6,7 @@
 
 /* --=== Imports ===-- */
 import { applyCustomStyles } from "./ApplyCustomStyles";
+import { vertexThemeBG } from "../VertexStyles";
 
 import _ from 'lodash';
 
@@ -29,9 +30,11 @@ export default function Form({ title, formInputsData, formValueUpdate, styles = 
 
   // Setup the Styling for the Form
   const defaultFormStylings = {
+    bg: vertexThemeBG.surface,
     h: "min-h-[85%] max-h-[85%]",
     w: "min-w-[100%] max-w-[100%]",
     gap: "gap-x-[15px]",
+    p: "p-[1.5rem]",
     flex: "flex flex-col items-start",
     rounded: "rounded-md",
     overflow: "overflow-auto"
@@ -82,13 +85,11 @@ export default function Form({ title, formInputsData, formValueUpdate, styles = 
         return (
           /** Render each Input of the form **/
           <div className=" flex gap-4 justify-start max-md:flex-col w-[100%] mb-3">
-            <div className="w-[calc(100%-35px)]">
               <InputComponent
                 {...inputProps} // Inject component properties by spreading them
                 formValueUpdate={(newInputData) => computeNewFormState(newInputData)}
                 key={formInputName} // Define keys
               />
-            </div>
           </div>
         );
       })}

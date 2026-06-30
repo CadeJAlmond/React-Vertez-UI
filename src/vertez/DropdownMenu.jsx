@@ -10,6 +10,7 @@
 import { Component, useState } from "react";
 
 import { applyCustomStyles } from "./ApplyCustomStyles";
+import { vertexThemeBG } from "../VertexStyles";
 
 /**
  * @brief :   
@@ -28,8 +29,12 @@ export function createFormDropdownMenu(formInputName, value, items, text) {
 }
 
 export function DropdownMenuItem({ children, onSelect }) {
+  const style = [
+    vertexThemeBG.surfaceHover,
+    "px-[15px] py-[5px] cursor-pointer text-[#f4f4f5]"
+  ].join(" ")
   return (
-    <li className="px-[15px] py-[5px] hover:bg-[#CCFF00]/20 cursor-pointer text-[#f4f4f5]" onClick={(e) => {
+    <li className={style} onClick={(e) => {
         e.stopPropagation(); 
         onSelect({ event: { name: children, value: children } });
     }}>
@@ -57,7 +62,7 @@ export function DropdownMenuItemButton({ children, onSelect, left, right, value,
   const leftButtonElement = left ? generateButton(left, children) : <></>
 
   return (
-    <li className="px-[15px] py-[5px] hover:bg-[#CCFF00]/20 cursor-pointer text-[#f4f4f5] flex place-content-between items-center" onClick={(e) => {
+    <li className={`px-[15px] py-[5px] cursor-pointer ${vertexThemeBG.surfaceHover} text-[#f4f4f5] flex place-content-between items-center`} onClick={(e) => {
         e.stopPropagation();
         onSelect({ ...props, event: { name: children, value: label ?? children } });
     }}>
@@ -100,9 +105,10 @@ export default function DropdownMenu({ children, items = [], styles = {}, select
     p: "px-[15px]",
     color: "text-[#ffffff]",
     bg: "bg-[transparent]",
-    b: "border-[2.5px] border-[#F1655C]/65",
+    b: "border-[1.5px]",
     text: "text-[17px] text-[#f4f4f5]/80",
-    border: "rounded-[5px]",
+    border: vertexThemeBG.border,
+    rounded: "rounded-[5px]",
     text: "text-[20px] text-[#ffffff]",
     flex: "flex",
     place: "place-content-between",
@@ -120,10 +126,10 @@ export default function DropdownMenu({ children, items = [], styles = {}, select
     "flex",
     "flex-col",
     "gap-[2.5px]",
-    "bg-[#0a0b0d]/95",
     "w-[100%]",
     "border-[2.5px]",
-    "border-[#F1655C]/45",
+    vertexThemeBG.border,
+    vertexThemeBG.surface,
     "rounded-[5px]",
   ].join(" ");
 

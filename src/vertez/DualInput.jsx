@@ -1,5 +1,6 @@
 import Input from "./Input";
 import SliderInput from "./SliderInput";
+import { vertexThemeBG, vertexThemeText } from "../VertexStyles"; 
 
 /**
  * @brief : 
@@ -25,12 +26,20 @@ export default function DualInput({
   name,
   logScaling = false,
   styles = {},
-  text
+  text,
+  required = false
 }) {
+  const requiredStyling = [
+    vertexThemeText.danger,
+    "text-[15px]",
+    "ml-[5px]",
+    "pt-[20px]"
+  ].join(" ")
+
   return (
     <div className="flex flex-col gap-2 w-[100%]">
-      <p className="text-nowrap text-sm font-medium text-[#ffffffcc] flex mb-[6px] tracking-wide flex items-center justify-between">
-        {text}
+      <div className="text-nowrap text-sm font-medium text-[#ffffffcc] flex mb-[6px] tracking-wide flex items-center justify-between">
+        <p>{text} {required && <span className={requiredStyling}>*</span>}</p>  
         <Input
           key={`input-${name}`}
           formValueUpdate={formValueUpdate}
@@ -38,9 +47,9 @@ export default function DualInput({
           min={min}
           value={value}
           name={name}
-          styles={{ ...styles, w: "w-min max-w-[111px]", h: "min-h-[30px] max-h-[30px]", text: "text-[15px] text-[#F1655B]" }}
+          styles={{ ...styles, w: "w-min max-w-[111px]", h: "min-h-[30px] max-h-[30px]", text: "text-[15px] text-end" }}
         />
-      </p>
+      </div>
       <SliderInput
         key={`sliders-${name}`}
         max={max}

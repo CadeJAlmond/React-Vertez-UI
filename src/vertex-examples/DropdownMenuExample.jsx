@@ -13,15 +13,13 @@ export default function DropdownMenuExample() {
     }
     
     return (
-        <div style={{ marginBottom: '2rem', paddingBottom: '1rem', borderBottom: `1px solid ${vertexThemeColors.border}` }}>
-            <h2 style={{ color: vertexThemeColors.primary, fontSize: '2rem', margin: '0 0 1.5rem 0' }}>Title : Custom Vertez Dropdown Menu </h2>
-            
+        <div style={{ marginBottom: '2rem', paddingBottom: '1rem', borderBottom: `1px solid ${vertexThemeColors.border}` }}>            
             <div style={{ padding: '1.5rem', background: vertexThemeColors.surface, borderRadius: '8px', marginBottom: '2rem', maxWidth: '400px' }}>
                 <DropdownMenu 
                     selectedItem={selected} 
                     items={menuItems}
                     onSelectionChange={handleSelect}
-                    styles={{ b: "border-[2.5px] border-[#CCFF00]/65" }} 
+                    styles={{ }} 
                 />
             </div>
             

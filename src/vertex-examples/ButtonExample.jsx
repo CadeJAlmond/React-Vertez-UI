@@ -1,21 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../vertez/Button';
-import { vertexThemeColors } from '../VertexStyles';
+import { vertexThemeBG, vertexThemeColors } from '../VertexStyles';
 
 export default function ButtonExample() {
+    const [numberCount, setNumberCount] = useState(0)
+    
     return (
-        <div style={{ marginBottom: '2rem', paddingBottom: '1rem', borderBottom: `1px solid ${vertexThemeColors.border}` }}>
-            <h2 style={{ color: vertexThemeColors.primary, fontSize: '2rem', margin: '0 0 1.5rem 0' }}>Title : Custom Vertez Button</h2>
-            
+        <div style={{ marginBottom: '2rem', paddingBottom: '1rem', borderBottom: `1px solid ${vertexThemeColors.border}` }}>            
             <div style={{ padding: '1.5rem', background: vertexThemeColors.surface, borderRadius: '8px', marginBottom: '2rem', display: 'flex', gap: '1rem' }}>
-                <Button onClick={() => alert('Button Clicked!')} styles={{ bg: "bg-[#CCFF00]/80", text: "text-[#000000]", hover: "hover:bg-[#CCFF00]" }}>
-                    Primary Button
+                <Button onClick={() => setNumberCount( numberCount + 1 )}>
+                    Increase Count
                 </Button>
-                <Button onClick={() => alert('Secondary Clicked!')}>
-                    Danger Button
+                <Button onClick={() => setNumberCount( numberCount - 1 )} styles={{ bg: vertexThemeBG.btnSecondary, bgHover: vertexThemeBG.btnSecondaryHover }}>
+                    Decrease Count
                 </Button>
             </div>
             
+            <div style={{ color: vertexThemeColors.textPrimary }}>
+                <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Button Count : { numberCount }</h3>
+            </div>
+
             <div style={{ color: vertexThemeColors.textPrimary }}>
                 <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Description :</h3>
                 <p style={{ paddingLeft: '1.5rem', fontSize: '1rem', color: vertexThemeColors.textSecondary, lineHeight: '1.5' }}>

@@ -10,6 +10,7 @@
  */
 
 import { applyCustomStyles } from "./ApplyCustomStyles";
+import { vertexThemeBG } from "../VertexStyles";
 
 /* --=== Imports ===-- */
 export default function Button({ children, styles = {}, onClick }) {
@@ -18,9 +19,9 @@ export default function Button({ children, styles = {}, onClick }) {
     h: "min-h-[37.5px] max-h-[37.5px]",
     px: "px-[20.5px]",
     color: "text-[#ffffff]",
-    bg: "bg-[#F1655C]/65",
+    bg: vertexThemeBG.btnPrimary,
+    bgHover: vertexThemeBG.btnPrimaryHover,
     border: "rounded-[5px]",
-    hover: "hover:bg-[#F1655C]/85",
     text: "text-[20px] text-[#ffffff]",
     flex: "flex",
     justify: "justify-center",
