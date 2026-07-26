@@ -6,7 +6,7 @@ export const vertexThemeColors = {
   surface: "#1B1B1D",            // App Background
   surfaceHover: "#1B1B1D",       // Hover on app-elements
 
-  textPrimary: "#cbd5e1",   // Main text
+  textPrimary: "#2e69b2",   // Main text
   textSecondary: "#e2e8f0", // Muted text
   
   border: "#ADADAF",
@@ -14,8 +14,8 @@ export const vertexThemeColors = {
 };
 
 export const vertexThemeText = {
-  textPrimary: "text-[#cbd5e1]",
-  textSecondary: "text-[#e2e8f0]",
+  textPrimary: "text-[#769cca]",
+  textSecondary: "text-[#f4f4f5]",
 
   danger: "text-[#F1655C]",
 }
@@ -31,8 +31,8 @@ export const vertexThemeBG = {
 
   background: "bg-[rgb(58, 58, 66)]",
   surface: "bg-[#1B1B1D]",
-  surfaceHover: "hover:bg-[#141417]",
+  surfaceHover: "hover:bg-[#2b2b2e]",
 
-  border: "border-[#ADADAF]",
+  border: "border-[#2d323b]",
   danger: "bg-[#F1655C]",
 }

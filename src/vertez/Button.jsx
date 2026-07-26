@@ -10,7 +10,7 @@
  */
 
 import { applyCustomStyles } from "./ApplyCustomStyles";
-import { vertexThemeBG } from "../VertexStyles";
+import { vertexThemeBG, vertexThemeText } from "../VertexStyles";
 
 /* --=== Imports ===-- */
 export default function Button({ children, styles = {}, onClick }) {
@@ -22,7 +22,7 @@ export default function Button({ children, styles = {}, onClick }) {
     bg: vertexThemeBG.btnPrimary,
     bgHover: vertexThemeBG.btnPrimaryHover,
     border: "rounded-[5px]",
-    text: "text-[20px] text-[#ffffff]",
+    text: ["text-[20px]", vertexThemeText.textSecondary].join(" "),
     flex: "flex",
     justify: "justify-center",
     wrap: "flex-wrap",

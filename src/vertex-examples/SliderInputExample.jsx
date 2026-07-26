@@ -1,16 +1,48 @@
+/** SliderInputExample.jsx
+ * @brief : This component is responsible for demonstrating how to use the SliderInput component.
+ */
+
+/* --=== Imports ===-- */
 import React, { useState } from 'react';
 import SliderInput, { createSliderInput } from '../vertez/SliderInput';
 import { vertexThemeColors } from '../VertexStyles';
+import ComponentArgumentDisplay from './ComponentArgumentDisplay';
 
 export default function SliderInputExample() {
     const [sliderVal, setSliderVal] = useState(50);
 
+    const sliderComponentProperties = [{
+        title: 'Description :',
+        description: 'A styled range slider input. Crucially, it supports logarithmic scaling, allowing fine control over small values while covering a huge total range when logScaling is enabled.'
+    }, {
+        title: 'Argument : value',
+        propertyType: 'Number',
+        required: true,
+        description: 'The current value of the slider.'
+    }, {
+        title: 'Argument : min & max',
+        propertyType: 'Number',
+        description: 'The upper and lower bounds for the slider\'s range.'
+    }, {
+        title: 'Argument : logScaling',
+        propertyType: 'Boolean',
+        description: 'If true, internally maps the slider\'s visual position to a logarithmic curve. Ideal for things like financial projections or frequencies.'
+    }, {
+        title: 'Argument : formValueUpdate',
+        required: true,
+        propertyType: 'Function',
+        description: 'The callback triggered when the slider moves. If logScaling is true, the value returned in the event object is already exponentiated back to the actual scaled value.'
+    }, {
+        title: 'Helper Function : createSliderInput',
+        description: <>Returns Form-compatible structure for the slider. Takes <code>(inputName, value, max, min, text)</code> as arguments.</>
+    }]
+
     return (
-        <div style={{ marginBottom: '2rem', paddingBottom: '1rem', borderBottom: `1px solid ${vertexThemeColors.border}` }}>
-            <h2 style={{ color: vertexThemeColors.primary, fontSize: '2rem', margin: '0 0 1.5rem 0' }}>Title : Custom Vertez Slider Input</h2>
+        <div className="mb-[2rem] pb-[1rem] border-b-[1px] border-b-[#ADADAF]">
+            <h2 className="text-[#769cca] text-[2rem] m-0 mb-[1.5rem]">Title : Custom Vertez Slider Input</h2>
             
-            <div style={{ padding: '1.5rem', background: vertexThemeColors.surface, borderRadius: '8px', marginBottom: '2rem', maxWidth: '400px' }}>
-                <div style={{ color: vertexThemeColors.textPrimary, marginBottom: '0.5rem' }}>Current Value: {sliderVal}</div>
+            <div className="p-[1.5rem] bg-[#1B1B1D] rounded-[8px] mb-[2rem] max-w-[400px]">
+                <div className="text-[#cbd5e1] mb-[0.5rem]">Current Value: {sliderVal}</div>
                 <SliderInput
                     name="volumeSlider"
                     value={sliderVal}
@@ -20,44 +52,19 @@ export default function SliderInputExample() {
                 />
             </div>
 
-            <div style={{ color: vertexThemeColors.textPrimary }}>
-                <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Description :</h3>
-                <p style={{ paddingLeft: '1.5rem', fontSize: '1rem', color: vertexThemeColors.textSecondary, lineHeight: '1.5' }}>
-                    A styled range slider input. Crucially, it supports logarithmic scaling, allowing fine control over small values while covering a huge total range when <code>logScaling</code> is enabled.
-                </p>
-                
-                <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Argument : value *</h3>
-                <p style={{ paddingLeft: '1.5rem', fontSize: '1rem', color: vertexThemeColors.textSecondary, lineHeight: '1.5' }}>
-                    <strong>Type:</strong> <code>Number</code><br />
-                    The current value of the slider.
-                </p>
-                
-                <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Argument : min & max *</h3>
-                <p style={{ paddingLeft: '1.5rem', fontSize: '1rem', color: vertexThemeColors.textSecondary, lineHeight: '1.5' }}>
-                    <strong>Type:</strong> <code>Number</code><br />
-                    The upper and lower bounds for the slider's range.
-                </p>
-                
-                <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Argument : logScaling</h3>
-                <p style={{ paddingLeft: '1.5rem', fontSize: '1rem', color: vertexThemeColors.textSecondary, lineHeight: '1.5' }}>
-                    <strong>Type:</strong> <code>Boolean</code><br />
-                    If true, internally maps the slider's visual position to a logarithmic curve. Ideal for things like financial projections or frequencies.
-                </p>
-                
-                <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Argument : formValueUpdate *</h3>
-                <p style={{ paddingLeft: '1.5rem', fontSize: '1rem', color: vertexThemeColors.textSecondary, lineHeight: '1.5' }}>
-                    <strong>Type:</strong> <code>Function</code><br />
-                    The callback triggered when the slider moves. If <code>logScaling</code> is true, the value returned in the event object is already exponentiated back to the actual scaled value.
-                </p>
-                
-                <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Helper Function : createSliderInput</h3>
-                <p style={{ paddingLeft: '1.5rem', fontSize: '1rem', color: vertexThemeColors.textSecondary, lineHeight: '1.5' }}>
-                    <strong>Arguments:</strong> <code>(inputName, value, max, min, text)</code><br />
-                    Returns Form-compatible structure for the slider.
-                </p>
+            <div className="text-[#cbd5e1]">
+                {sliderComponentProperties.map((sliderDetails) =>
+                    <ComponentArgumentDisplay
+                        propertyTitle={sliderDetails.title}
+                        propertyType={null || sliderDetails?.propertyType}
+                        propertyRequired={null || sliderDetails?.required}
+                    >
+                        {sliderDetails.description}
+                    </ComponentArgumentDisplay>
+                )}
 
-                <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Reference :</h3>
-                <div style={{ paddingLeft: '1.5rem', fontSize: '0.9rem', color: vertexThemeColors.textSecondary, lineHeight: '1.6', fontFamily: 'monospace', background: vertexThemeColors.background, padding: '1rem', borderRadius: '5px' }}>
+                <h3 className="text-[#769cca] text-[1.25rem] mt-[1.5rem] mb-[0.5rem]">Reference :</h3>
+                <div className="pl-[1.5rem] text-[0.9rem] text-[#e2e8f0] leading-[1.6] font-mono bg-[rgb(47, 47, 68)] p-[1rem] rounded-[5px]">
 {`<SliderInput
     name={brightnessFieldName}
     value={currentBrightness}

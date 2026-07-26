@@ -1,6 +1,12 @@
+/** DualInputExample.jsx
+ * @brief : This component is responsible for demonstrating how to use the DualInput component.
+ */
+
+/* --=== Imports ===-- */
 import React, { useState } from 'react';
 import DualInput, { createDualInputs } from '../vertez/DualInput';
 import { vertexThemeColors } from '../VertexStyles';
+import ComponentArgumentDisplay from './ComponentArgumentDisplay';
 
 export default function DualInputExample() {
     const [val, setVal] = useState(50);
@@ -9,8 +15,36 @@ export default function DualInputExample() {
         setVal(e.target.value);
     };
 
+    const dualInputComponentProperties = [{
+        title: 'Description :',
+        description: 'A synchronized combination of a numeric text input and a range slider. Updating either element updates the shared value. It includes a label text placed intuitively above the slider alongside the text input.'
+    }, {
+        title: 'Argument : text',
+        propertyType: 'String',
+        required: true,
+        description: 'The label describing the dual input.'
+    }, {
+        title: 'Argument : value',
+        propertyType: 'Number | String',
+        required: true,
+        description: 'The current numeric value bound to the inputs.'
+    }, {
+        title: 'Argument : min & max',
+        propertyType: 'Number',
+        description: 'The bounds for the slider and the numeric input validation.'
+    }, {
+        title: 'Argument : formValueUpdate',
+        propertyType: 'Function',
+        required: true,
+        description: 'Callback triggered on value change.'
+    }, {
+        title: 'Argument : logScaling',
+        propertyType: 'Boolean',
+        description: 'Applies logarithmic scaling to the underlying slider if set to true. Default is false.'
+    }]
+
     return (
-            <div className="mb-[2rem] pb-[1rem] border-b-[1px] border-b-[#ADADAF]">
+        <div className="mb-[2rem] pb-[1rem] border-b-[1px] border-b-[#ADADAF]">
             <div className="p-[1.5rem] bg-[#1B1B1D] rounded-[8px] mb-[2rem] max-w-[500px]">
                 <DualInput
                     text="Set Battery Limit (%)"
@@ -19,54 +53,23 @@ export default function DualInputExample() {
                     min={0}
                     max={100}
                     formValueUpdate={handleUpdate}
-                    className="text-[#769cca]"
+                    styles={{ text: `text-[${vertexThemeColors.primary}]` }}
                 />
             </div>
 
             <div className="text-[#cbd5e1]">
-                <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Description :</h3>
-                <p style={{ paddingLeft: '1.5rem', fontSize: '1rem', color: vertexThemeColors.textSecondary, lineHeight: '1.5' }}>
-                    A synchronized combination of a numeric text input and a range slider. Updating either element updates the shared value. It includes a label text placed intuitively above the slider alongside the text input.
-                </p>
-                
-                <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Argument : text *</h3>
-                <p style={{ paddingLeft: '1.5rem', fontSize: '1rem', color: vertexThemeColors.textSecondary, lineHeight: '1.5' }}>
-                    <strong>Type:</strong> <code>String</code><br />
-                    The label describing the dual input.
-                </p>
-                
-                <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Argument : value *</h3>
-                <p style={{ paddingLeft: '1.5rem', fontSize: '1rem', color: vertexThemeColors.textSecondary, lineHeight: '1.5' }}>
-                    <strong>Type:</strong> <code>Number | String</code><br />
-                    The current numeric value bound to the inputs.
-                </p>
-                
-                <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Argument : min & max *</h3>
-                <p style={{ paddingLeft: '1.5rem', fontSize: '1rem', color: vertexThemeColors.textSecondary, lineHeight: '1.5' }}>
-                    <strong>Type:</strong> <code>Number</code><br />
-                    The bounds for the slider and the numeric input validation.
-                </p>
-                
-                <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Argument : formValueUpdate *</h3>
-                <p style={{ paddingLeft: '1.5rem', fontSize: '1rem', color: vertexThemeColors.textSecondary, lineHeight: '1.5' }}>
-                    <strong>Type:</strong> <code>Function</code><br />
-                    Callback triggered on value change.
-                </p>
-                
-                <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Argument : logScaling</h3>
-                <p style={{ paddingLeft: '1.5rem', fontSize: '1rem', color: vertexThemeColors.textSecondary, lineHeight: '1.5' }}>
-                    <strong>Type:</strong> <code>Boolean</code><br />
-                    Applies logarithmic scaling to the underlying slider if set to true. Default is false.
-                </p>
-                
-                <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Helper Function : createDualInputs</h3>
-                <p style={{ paddingLeft: '1.5rem', fontSize: '1rem', color: vertexThemeColors.textSecondary, lineHeight: '1.5' }}>
-                    <strong>Arguments:</strong> <code>(formInputName, value, max, min, text)</code><br />
-                    Helper to generate standard object compatible with the Form component.
-                </p>
+                {dualInputComponentProperties.map((dualDetails) =>
+                    <ComponentArgumentDisplay
+                        propertyTitle={dualDetails.title}
+                        propertyType={null || dualDetails?.propertyType}
+                        propertyRequired={null || dualDetails?.required}
+                    >
+                        {dualDetails.description}
+                    </ComponentArgumentDisplay>
+                )}
 
-                <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Reference :</h3>
-                <div style={{ paddingLeft: '1.5rem', fontSize: '0.9rem', color: vertexThemeColors.textSecondary, lineHeight: '1.6', fontFamily: 'monospace', background: vertexThemeColors.background, padding: '1rem', borderRadius: '5px' }}>
+                <h3 className="text-[#769cca] text-[1.25rem] mt-[1.5rem] mb-[0.5rem]">Reference :</h3>
+                <div className="pl-[1.5rem] text-[0.9rem] text-[#e2e8f0] leading-[1.6] font-mono bg-[rgb(47, 47, 68)] p-[1rem] rounded-[5px]">
 {`<DualInput
     text={volumeLabelText}
     name={volumeFieldName}

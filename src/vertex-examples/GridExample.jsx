@@ -1,12 +1,18 @@
+/** GridExample.jsx
+ * @brief : This component is responsible for demonstrating how to use the Grid component.
+ */
+
+/* --=== Imports ===-- */
 import React from 'react';
 import Grid, { defaultGridColumnsOptions } from '../vertez/Grid';
 import { vertexThemeColors } from '../VertexStyles';
+import ComponentArgumentDisplay from './ComponentArgumentDisplay';
 
 function SampleCard({ title, desc }) {
     return (
-        <div style={{ background: vertexThemeColors.background, padding: '1rem', border: `1px solid ${vertexThemeColors.border}`, borderRadius: '5px' }}>
-            <h4 style={{ color: vertexThemeColors.primary, margin: '0 0 0.5rem 0' }}>{title}</h4>
-            <p style={{ color: vertexThemeColors.textSecondary, margin: 0 }}>{desc}</p>
+        <div className="bg-[rgb(47, 47, 68)] p-[1rem] border-[1px] border-[#ADADAF] rounded-[5px]">
+            <h4 className="text-[#769cca] mb-[0.5rem]">{title}</h4>
+            <p className="text-[#e2e8f0] m-0">{desc}</p>
         </div>
     );
 }
@@ -18,9 +24,36 @@ export default function GridExample() {
         { id: 3, title: 'Item Three', desc: 'Description for 3' },
     ];
 
+    const gridComponentProperties = [{
+        title: 'Description :',
+        description: 'A dynamic layout grid that maps an array of data to a specific React component, arranging them into configurable columns. It comes with exported tailwind grid constants for easy column management.'
+    }, {
+        title: 'Argument : gridData',
+        propertyType: 'Array of Objects',
+        required: true,
+        description: 'The data to iterate over. Each object is passed as props to the GridItemComponent.'
+    }, {
+        title: 'Argument : GridItemComponent',
+        propertyType: 'ComponentClass | FunctionComponent',
+        description: 'The React component to render for each item in gridData.'
+    }, {
+        title: 'Argument : columns',
+        propertyType: 'String (Tailwind Class)',
+        description: 'The tailwind class defining grid columns (e.g., "grid-cols-3" or via defaultGridColumnsOptions).'
+    }, {
+        title: 'Argument : gridDataKey',
+        propertyType: 'String',
+        required: true,
+        description: 'The property name in your data to use as the React key.'
+    }, {
+        title: 'Argument : customGridStyles',
+        propertyType: 'object',
+        description: 'Style overrides for the grid container wrapper.'
+    }]
+
     return (
-        <div style={{ marginBottom: '2rem', paddingBottom: '1rem', borderBottom: `1px solid ${vertexThemeColors.border}` }}>            
-            <div style={{ padding: '1.5rem', background: vertexThemeColors.surface, borderRadius: '8px', marginBottom: '2rem' }}>
+        <div className="mb-[2rem] pb-[1rem] border-b-[1px] border-b-[#ADADAF]">
+            <div className="p-[1.5rem] bg-[#1B1B1D] rounded-[8px] mb-[2rem]">
                 <Grid
                     gridData={data}
                     GridItemComponent={SampleCard}
@@ -30,44 +63,19 @@ export default function GridExample() {
                 />
             </div>
 
-            <div style={{ color: vertexThemeColors.textPrimary }}>
-                <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Description :</h3>
-                <p style={{ paddingLeft: '1.5rem', fontSize: '1rem', color: vertexThemeColors.textSecondary, lineHeight: '1.5' }}>
-                    A dynamic layout grid that maps an array of data to a specific React component, arranging them into configurable columns. It comes with exported tailwind grid constants for easy column management.
-                </p>
-                
-                <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Argument : gridData *</h3>
-                <p style={{ paddingLeft: '1.5rem', fontSize: '1rem', color: vertexThemeColors.textSecondary, lineHeight: '1.5' }}>
-                    <strong>Type:</strong> <code>Array of Objects</code><br />
-                    The data to iterate over. Each object is passed as props to the <code>GridItemComponent</code>.
-                </p>
-                
-                <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Argument : GridItemComponent *</h3>
-                <p style={{ paddingLeft: '1.5rem', fontSize: '1rem', color: vertexThemeColors.textSecondary, lineHeight: '1.5' }}>
-                    <strong>Type:</strong> <code>ComponentClass | FunctionComponent</code><br />
-                    The React component to render for each item in <code>gridData</code>.
-                </p>
-                
-                <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Argument : columns *</h3>
-                <p style={{ paddingLeft: '1.5rem', fontSize: '1rem', color: vertexThemeColors.textSecondary, lineHeight: '1.5' }}>
-                    <strong>Type:</strong> <code>String (Tailwind Class)</code><br />
-                    The tailwind class defining grid columns (e.g., <code>"grid-cols-3"</code> or via <code>defaultGridColumnsOptions</code>).
-                </p>
-                
-                <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Argument : gridDataKey *</h3>
-                <p style={{ paddingLeft: '1.5rem', fontSize: '1rem', color: vertexThemeColors.textSecondary, lineHeight: '1.5' }}>
-                    <strong>Type:</strong> <code>String</code><br />
-                    The property name in your data to use as the React <code>key</code>.
-                </p>
-                
-                <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Argument : customGridStyles</h3>
-                <p style={{ paddingLeft: '1.5rem', fontSize: '1rem', color: vertexThemeColors.textSecondary, lineHeight: '1.5' }}>
-                    <strong>Type:</strong> <code>Object</code><br />
-                    Style overrides for the grid container wrapper.
-                </p>
+            <div className="text-[#cbd5e1]">
+                {gridComponentProperties.map((gridDetails) =>
+                    <ComponentArgumentDisplay
+                        propertyTitle={gridDetails.title}
+                        propertyType={null || gridDetails?.propertyType}
+                        propertyRequired={null || gridDetails?.required}
+                    >
+                        {gridDetails.description}
+                    </ComponentArgumentDisplay>
+                )}
 
-                <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Reference :</h3>
-                <div style={{ paddingLeft: '1.5rem', fontSize: '0.9rem', color: vertexThemeColors.textSecondary, lineHeight: '1.6', fontFamily: 'monospace', background: vertexThemeColors.background, padding: '1rem', borderRadius: '5px' }}>
+                <h3 className="text-[#769cca] text-[1.25rem] mt-[1.5rem] mb-[0.5rem]">Reference :</h3>
+                <div className="pl-[1.5rem] text-[0.9rem] text-[#e2e8f0] leading-[1.6] font-mono bg-[rgb(47, 47, 68)] p-[1rem] rounded-[5px]">
 {`<Grid
     gridData={productCatalogItems}
     GridItemComponent={ProductCard}

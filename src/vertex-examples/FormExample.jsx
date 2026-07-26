@@ -8,11 +8,9 @@ import Checkbox from "../vertez/CheckBox";
 import DualInput from "../vertez/DualInput";
 import { useState } from "react";
 import { vertexThemeBG, vertexThemeColors } from '../VertexStyles';
+import ComponentArgumentDisplay from './ComponentArgumentDisplay';
 
 export default function FormExample() {
-    /* --=== Default Form Values ===-- */
-    // These values represent the parameters / general data for the inputs
-    // shown within the form.
     const defaultRetirementFormValues = {
         isRothIRA: {
             text: "IS ROTH IRA?",
@@ -60,9 +58,43 @@ export default function FormExample() {
 
     const [formValues, setFormValues] = useState(defaultRetirementFormValues);
 
+    const formComponentProperties = [{
+        title: 'Description :',
+        description: 'A flexible form component that accepts a schema-based data structure to dynamically render form inputs. Supports custom styling via the styles prop.'
+    }, {
+        title: 'Argument : title',
+        propertyType: 'String',
+        description: 'The title of the form (optional argument).'
+    }, {
+        title: 'Argument : formInputsData',
+        propertyType: 'Array',
+        required: true,
+        description: (
+                <ul className="ml-[1.5rem] mt-[0.5rem]">
+                <li><strong>InputComponent</strong> : The type of input to render (e.g., Input, Checkbox, Dropdown). Should accept the data contained in the other fields of this object as arguments.</li>
+                <li><strong>Text</strong> : The label associated with the input</li>
+                <li><strong>Value</strong> : The current value of the input</li>
+                <li><strong>Max</strong> : The maximum value of the input (for range inputs)</li>
+                <li><strong>Min</strong> : The minimum value of the input (for range inputs)</li>
+            </ul>
+        )
+    }, {
+        title: 'Argument : formValueUpdate',
+        propertyType: 'Function',
+        required: true,
+        description: 'A callback function which will be invoked whenever the values of the inputs are updated. An updated state of the form is passed as the first argument.'
+    }, {
+        title: 'Argument : styles',
+        propertyType: 'object',
+        description: 'Custom tailwind style overrides for the form container.'
+    }, {
+        title: 'Example : formInputsData',
+        description: <>Each form input object should include: <code>text</code> (label), <code>value</code> (current value), <code>InputComponent</code> (the input component to render), and optional <code>max</code>, <code>min</code>, and <code>validators</code>.</>
+    }]
+
     return (
         <div className="mb-[2rem] border-b-[1rem]">
-            <div className="mb-[2rem] ">
+            <div className="mb-[2rem]">
                 <Form
                     title={"Retirement Planner"}
                     formInputsData={formValues}
@@ -71,66 +103,38 @@ export default function FormExample() {
                 />
             </div>
 
-            <div style={{ padding: '1.5rem', width: "550px", background: vertexThemeColors.surface, borderRadius: '8px', marginBottom: '2rem', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                <div style={{ color: vertexThemeColors.textSecondary }}>IS ROTH IRA Form Internal Data</div>
-                <div className="text-md flex " style={{ color: vertexThemeColors.primary }}>{formValues.isRothIRA.value.toString()}</div>
-                <div style={{ color: vertexThemeColors.textSecondary }}>INITIAL BALANCE</div>
-                <div className="text-md flex" style={{ color: vertexThemeColors.primary }}>{formValues.initialBalance.value}</div>
-                <div style={{ color: vertexThemeColors.textSecondary }}>EXPECTED STOCK GROWTH</div>
-                <div className="text-md flex" style={{ color: vertexThemeColors.primary }}>{formValues.expectedStockGrowth.value}</div>
-                <div style={{ color: vertexThemeColors.textSecondary }}>CURRENT AGE</div>
-                <div className="text-md flex" style={{ color: vertexThemeColors.primary }}>{formValues.age.value}</div>
-                <div style={{ color: vertexThemeColors.textSecondary }}>AGE OF RETIREMENT</div>
-                <div className="text-md flex" style={{ color: vertexThemeColors.primary }}>{formValues.retirementAge.value}</div>
-                <div style={{ color: vertexThemeColors.textSecondary }}>ANNUAL INCOME</div>
-                <div className="text-md flex" style={{ color: vertexThemeColors.primary }}>{formValues.annualIncome.value}</div>
-                <div style={{ color: vertexThemeColors.textSecondary }}>PERCENT OF INCOME TO INVEST</div>
-                <div className="text-md flex" style={{ color: vertexThemeColors.primary }}>{formValues.investing.value}</div>
+            <div className="p-[1.5rem] w-[550px] bg-[#1B1B1D] rounded-[8px] mb-[2rem] grid grid-cols-[1fr_1fr] gap-[1rem]">
+                <div className="text-[#e2e8f0]">IS ROTH IRA Form Internal Data</div>
+                <div className="text-md flex text-[#769cca]">{formValues.isRothIRA.value.toString()}</div>
+                <div className="text-[#e2e8f0]">INITIAL BALANCE</div>
+                <div className="text-md flex text-[#769cca]">{formValues.initialBalance.value}</div>
+                <div className="text-[#e2e8f0]">EXPECTED STOCK GROWTH</div>
+                <div className="text-md flex text-[#769cca]">{formValues.expectedStockGrowth.value}</div>
+                <div className="text-[#e2e8f0]">CURRENT AGE</div>
+                <div className="text-md flex text-[#769cca]">{formValues.age.value}</div>
+                <div className="text-[#e2e8f0]">AGE OF RETIREMENT</div>
+                <div className="text-md flex text-[#769cca]">{formValues.retirementAge.value}</div>
+                <div className="text-[#e2e8f0]">ANNUAL INCOME</div>
+                <div className="text-md flex text-[#769cca]">{formValues.annualIncome.value}</div>
+                <div className="text-[#e2e8f0]">PERCENT OF INCOME TO INVEST</div>
+                <div className="text-md flex text-[#769cca]">{formValues.investing.value}</div>
             </div>
 
-            <div style={{ color: vertexThemeColors.textPrimary }}>
-                <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Description :</h3>
-                <p style={{ paddingLeft: '1.5rem', fontSize: '1rem', color: vertexThemeColors.textSecondary, lineHeight: '1.5' }}>
-                    To create a custom form, one must pass the form data (formInputsData) into the Form.
-                    formInputsData is a generic data structure which is meant to be used to construct
-                    the form, and it is also what will be used to track the values of the inputs.
-                    formValueUpdate is a callback function which will be invoked whenever the values
-                    of the inputs are updated.
-                </p>
+            <div className="text-[#cbd5e1]">
+                {formComponentProperties.map((formDetails) =>
+                    <ComponentArgumentDisplay
+                        propertyTitle={formDetails.title}
+                        propertyType={null || formDetails?.propertyType}
+                        propertyRequired={null || formDetails?.required}
+                    >
+                        {formDetails.description}
+                    </ComponentArgumentDisplay>
+                )}
 
-                <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Argument : Title</h3>
-                <p style={{ paddingLeft: '1.5rem', fontSize: '1rem', color: vertexThemeColors.textSecondary, lineHeight: '1.5' }}>
-                    The title of the form (optional argument)
-                </p>
-
-                <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Argument : Form Inputs Data *</h3>
-                <div style={{ paddingLeft: '1.5rem', fontSize: '1rem', color: vertexThemeColors.textSecondary, lineHeight: '1.5' }}>
-                    The data structure which is used to construct the form. The arguements are:
-                    <ul style={{ marginLeft: '1.5rem', marginTop: '0.5rem' }}>
-                        <li><strong>InputComponent</strong> : The type of input to render (e.g., Input, Checkbox, Dropdown). Should accept the data contained in the other fields of this object as arguments.</li>
-                        <li><strong>Text</strong> : The label associated with the input</li>
-                        <li><strong>Value</strong> : The current value of the input</li>
-                        <li><strong>Max</strong> : The maximum value of the input (for range inputs)</li>
-                        <li><strong>Min</strong> : The minimum value of the input (for range inputs)</li>
-                    </ul>
-                </div>
-
-                <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Argument : Form Value Update *</h3>
-                <p style={{ paddingLeft: '1.5rem', fontSize: '1rem', color: vertexThemeColors.textSecondary, lineHeight: '1.5' }}>
-                    A callback function which will be invoked whenever the values of the inputs are updated. An updated
-                    state of the form is passed as the first arguement to this function, and the label and value of
-                    the updated input is passed as the second arguement to the function.
-                </p>
-
-                <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Argument : Custom Form Styles</h3>
-                <p style={{ paddingLeft: '1.5rem', fontSize: '1rem', color: vertexThemeColors.textSecondary, lineHeight: '1.5' }}>
-                    The custom form styles are optional.
-                </p>
-
-                <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Example : formInputsData</h3>
-                <div style={{ paddingLeft: '1.5rem', fontSize: '1rem', color: vertexThemeColors.textSecondary, lineHeight: '1.5', fontFamily: 'monospace' }}>
+                <h3 className="text-[#769cca] text-[1.25rem] mt-[1.5rem] mb-[0.5rem]">Example : formInputsData</h3>
+                <div className="pl-[1.5rem] text-[1rem] text-[#e2e8f0] leading-[1.5] font-mono">
                     <div>const formInputsData = [</div>
-                    <div style={{ paddingLeft: '1.5rem' }}>
+                    <div className="pl-[1.5rem]">
                         {Object.keys(defaultRetirementFormValues).map((formInput, idx) => {
                             const { text, value, InputComponent } = defaultRetirementFormValues[formInput];
                             return (
@@ -143,8 +147,8 @@ export default function FormExample() {
                     <div>]</div>
                 </div>
 
-                <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Reference :</h3>
-                <div style={{ paddingLeft: '1.5rem', fontSize: '0.9rem', color: vertexThemeColors.textSecondary, lineHeight: '1.6', fontFamily: 'monospace', background: vertexThemeColors.background, padding: '1rem', borderRadius: '5px' }}>
+                <h3 className="text-[#769cca] text-[1.25rem] mt-[1.5rem] mb-[0.5rem]">Reference :</h3>
+                <div className="pl-[1.5rem] text-[0.9rem] text-[#e2e8f0] leading-[1.6] font-mono bg-[rgb(47, 47, 68)] p-[1rem] rounded-[5px]">
 {`<Form
     title={formTitleText}
     formInputsData={registrationFormSchema}
@@ -156,5 +160,5 @@ export default function FormExample() {
                 </div>
             </div>
         </div>
-    )
+    );
 }

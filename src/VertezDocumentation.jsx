@@ -42,8 +42,7 @@ export default function VertezDocumentation() {
     }, {
         label: 'Custom Accordion',
         children: <AccordionExample/>,
-     }]
-
+    }]
 
     const titleStyling = [
         vertexThemeText.textPrimary,
@@ -57,13 +56,13 @@ export default function VertezDocumentation() {
         <div className='min-h-[100vh] py-[2rem]'>
             <header className='mx-auto w-[650px] my-[4rem] text-center'>
                 <h1 className={titleStyling}>VertezUI Documentation</h1>
-                <p style={{ color: vertexThemeColors.textSecondary, fontSize: '1.2rem' }}>
+                <p className="text-[#cbd5e1] text-[1.2rem]">
                     Interactive component library documentation
                 </p>
             </header>
 
             <main className="flex flex-col gap-[2rem]">
-                <Accordion items={items} styles={{ gap: 'gap-[5px]', text: 'text-[18px]'}}/>
+                <Accordion items={items} styles={{gap: "gap-[10px]", p: "p-[20px]", text: "text-[22px]"}}/>
             </main>
         </div>
     );
