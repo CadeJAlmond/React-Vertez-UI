@@ -10,8 +10,8 @@ export default function CheckBoxExample() {
     };
 
     return (
-        <div style={{ marginBottom: '2rem', paddingBottom: '1rem', borderBottom: `1px solid ${vertexThemeColors.border}` }}>
-            <div style={{ padding: '1.5rem', background: vertexThemeColors.surface, borderRadius: '8px', marginBottom: '2rem', maxWidth: '300px' }}>
+        <div className="mb-[2rem] pb-[1rem] border-b-[1px] border-b-[#ADADAF]">
+            <div className="p-[1.5rem] bg-[#1B1B1D] rounded-[8px] mb-[2rem] max-w-[300px]">
                 <Checkbox
                     text="Enable Electric Lime Mode"
                     name="electricLime"
@@ -20,9 +20,9 @@ export default function CheckBoxExample() {
                 />
             </div>
 
-            <div style={{ color: vertexThemeColors.textPrimary }}>
-                <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Description :</h3>
-                <p style={{ paddingLeft: '1.5rem', fontSize: '1rem', color: vertexThemeColors.textSecondary, lineHeight: '1.5' }}>
+            <div className="text-[#cbd5e1]">
+                <h3 className="text-[#769cca] text-[1.25rem] mt-[1.5rem] mb-[0.5rem]">Description :</h3>
+                <p className="pl-[1.5rem] text-[1rem] text-[#e2e8f0] leading-[1.5]">
                     A styled toggle switch checkbox component. It requires a label text, a value (checked state), and a callback function to handle state updates.
                 </p>
 

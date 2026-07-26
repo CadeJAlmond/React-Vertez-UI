@@ -10,6 +10,7 @@
 import { Component, useState } from "react";
 
 import { applyCustomStyles } from "./ApplyCustomStyles";
+import { Tooltip } from "./Tooltip";
 import { vertexThemeBG } from "../VertexStyles";
 
 /**
@@ -83,7 +84,7 @@ export function DropdownMenuItemButton({ children, onSelect, left, right, value,
  * @param {string} onSelectionChange : on click callback function.
  * @returns {Component} An interactive dropdown-menu.
  */
-export default function DropdownMenu({ children, items = [], styles = {}, selectedItem, multiSelect = false, onSelectionChange, placeholderText = "" }) {
+export default function DropdownMenu({ children, items = [], styles = {}, selectedItem, multiSelect = false, onSelectionChange, placeholderText = "", tooltip }) {
   const [openMenu, setOpenedMenu] = useState(false);
 
   const displaySelected = Array.isArray(selectedItem)
@@ -139,7 +140,10 @@ export default function DropdownMenu({ children, items = [], styles = {}, select
         className={dropdownMenuStyling}
         onClick={() => setOpenedMenu(!openMenu)}
       >
-        <div className="">{displaySelected}</div>
+        <div className="flex items-center gap-[4px]">
+          <span>{displaySelected}</span>
+          {tooltip && <Tooltip content={tooltip} />}
+        </div>
         <div>
           {openMenu ? (
             <svg

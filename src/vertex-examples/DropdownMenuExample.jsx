@@ -13,19 +13,19 @@ export default function DropdownMenuExample() {
     }
     
     return (
-        <div style={{ marginBottom: '2rem', paddingBottom: '1rem', borderBottom: `1px solid ${vertexThemeColors.border}` }}>            
-            <div style={{ padding: '1.5rem', background: vertexThemeColors.surface, borderRadius: '8px', marginBottom: '2rem', maxWidth: '400px' }}>
+        <div className="mb-[2rem] pb-[1rem] border-b-[1px] border-b-[#ADADAF]">            
+            <div className="p-[1.5rem] bg-[#1B1B1D] rounded-[8px] mb-[2rem] max-w-[400px]">
                 <DropdownMenu 
                     selectedItem={selected} 
                     items={menuItems}
                     onSelectionChange={handleSelect}
-                    styles={{ }} 
+                    className="" 
                 />
             </div>
             
-            <div style={{ color: vertexThemeColors.textPrimary }}>
-                <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Description :</h3>
-                <p style={{ paddingLeft: '1.5rem', fontSize: '1rem', color: vertexThemeColors.textSecondary, lineHeight: '1.5' }}>
+            <div className="text-[#cbd5e1]">
+                <h3 className="text-[#769cca] text-[1.25rem] mt-[1.5rem] mb-[0.5rem]">Description :</h3>
+                <p className="pl-[1.5rem] text-[1rem] text-[#e2e8f0] leading-[1.5]">
                     A collapsible dropdown menu component. When clicked, it reveals a list of options. It supports passing an array of <code>items</code> or generic React <code>children</code> for full customizability.
                 </p>
 

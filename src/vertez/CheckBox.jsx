@@ -1,5 +1,6 @@
 import React from "react";
 import { applyCustomStyles } from "./ApplyCustomStyles";
+import { Tooltip } from "./Tooltip";
 
 /**
  * @param {React.JSX} children - The label text for the checkbox input.
@@ -16,6 +17,7 @@ export default function Checkbox({
     text,
     styles = {},
     name,
+    tooltip,
 }) {
     // Default styling for the checkbox and label
     const defaultStylings = {
@@ -34,6 +36,7 @@ export default function Checkbox({
         <span className="flex gap-[15px]">
             <p className="text-nowrap text-sm font-medium text-[#ffffffcc] flex tracking-wide flex items-center justify-between">
                 {text}
+                {tooltip && <Tooltip content={tooltip} />}
             </p>
             <input
                 type="checkbox"

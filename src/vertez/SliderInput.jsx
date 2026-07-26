@@ -19,6 +19,7 @@
 
 /* --=== Imports ===-- */
 import { applyCustomStyles } from "./ApplyCustomStyles";
+import { Tooltip } from "./Tooltip";
 
 export function createSliderInput(inputName, value, max, min, text) {
   return {
@@ -36,7 +37,8 @@ export default function SliderInput({
   value,
   name,
   logScaling = false,
-  styles = {}
+  styles = {},
+  tooltip,
 }) {
   const logMin = Math.log(min);
   const logMax = Math.log(max);
@@ -90,14 +92,17 @@ export default function SliderInput({
   const inputStyling = applyCustomStyles(defaultStylings, styles);
 
   return (
-    <input
-      className={inputStyling}
-      type="range"
-      max={max}
-      min={min}
-      onChange={formValueUpdate}
-      value={logScaling ? scaleValueToLog(value) : value}
-      name={name}
-    />
+    <div className="flex items-center gap-[4px]">
+      <input
+        className={inputStyling}
+        type="range"
+        max={max}
+        min={min}
+        onChange={formValueUpdate}
+        value={logScaling ? scaleValueToLog(value) : value}
+        name={name}
+      />
+      {tooltip && <Tooltip content={tooltip} />}
+    </div>
   );
 }

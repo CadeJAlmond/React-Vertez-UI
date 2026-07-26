@@ -61,7 +61,7 @@ export default function FormExample() {
     const [formValues, setFormValues] = useState(defaultRetirementFormValues);
 
     return (
-        <div className="mb-[2rem] [b-[1rem]">
+        <div className="mb-[2rem] border-b-[1rem]">
             <div className="mb-[2rem] ">
                 <Form
                     title={"Retirement Planner"}

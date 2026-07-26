@@ -1,6 +1,7 @@
 import Input from "./Input";
 import SliderInput from "./SliderInput";
-import { vertexThemeBG, vertexThemeText } from "../VertexStyles"; 
+import { vertexThemeBG, vertexThemeText } from "../VertexStyles";
+import { Tooltip } from "./Tooltip"; 
 
 /**
  * @brief : 
@@ -27,7 +28,8 @@ export default function DualInput({
   logScaling = false,
   styles = {},
   text,
-  required = false
+  required = false,
+  tooltip,
 }) {
   const requiredStyling = [
     vertexThemeText.danger,
@@ -39,7 +41,7 @@ export default function DualInput({
   return (
     <div className="flex flex-col gap-2 w-[100%]">
       <div className="text-nowrap text-sm font-medium text-[#ffffffcc] flex mb-[6px] tracking-wide flex items-center justify-between">
-        <p>{text} {required && <span className={requiredStyling}>*</span>}</p>  
+        <p>{text} {required && <span className={requiredStyling}>*</span>} {tooltip && <Tooltip content={tooltip} />}</p>  
         <Input
           key={`input-${name}`}
           formValueUpdate={formValueUpdate}

@@ -7,6 +7,7 @@
 /* --=== Imports ===-- */
 import { useState } from "react";
 import { applyCustomStyles } from "./ApplyCustomStyles";
+import { Tooltip } from "./Tooltip";
 
 /**
  * @param {React.JSX} children : Custom JSX to render instead of 
@@ -20,7 +21,7 @@ import { applyCustomStyles } from "./ApplyCustomStyles";
  *    accordion container.
  * @returns {Component} A collapsible accordion element.
  */
-export default function Accordion({ children, items = [], multiSelect = false, styles = {} }) {
+export default function Accordion({ children, items = [], multiSelect = false, styles = {}, tooltip }) {
   const [openSections, setOpenSections] = useState([]);
 
   // Setup styles for the Accordion container
@@ -78,6 +79,7 @@ export default function Accordion({ children, items = [], multiSelect = false, s
             label={label}
             isOpen={isOpen}
             onToggle={() => toggleSection(index)}
+            tooltip={tooltip}
             {...itemProps}
           />
         );
@@ -94,7 +96,7 @@ export default function Accordion({ children, items = [], multiSelect = false, s
  * @param {Function} onToggle : Callback to toggle the open/closed state.
  * @returns {Component} A single accordion section with header and content.
  */
-export function AccordionItem({ label, children, content, isOpen, onToggle }) {
+export function AccordionItem({ label, children, content, isOpen, onToggle, tooltip }) {
   return (
     <div className="border-[1px] border-[#2d323b]/70 rounded-[5px]">
       <div
@@ -102,6 +104,7 @@ export function AccordionItem({ label, children, content, isOpen, onToggle }) {
         onClick={onToggle}
       >
         <span className="text-[16px] font-medium">{label}</span>
+        {tooltip && <Tooltip content={tooltip} />}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"

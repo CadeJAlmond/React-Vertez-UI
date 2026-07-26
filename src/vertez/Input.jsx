@@ -8,6 +8,7 @@
 
 /* --=== Imports ===-- */
 import { applyCustomStyles } from "./ApplyCustomStyles";
+import { Tooltip } from "./Tooltip";
 
 /**
  * @brief : 
@@ -45,7 +46,8 @@ export default function Input({
   value,
   min,
   max,
-  name
+  name,
+  tooltip,
 }) {
   // Setup styles for the SliderInput
   const defaultStylings = {
@@ -61,26 +63,32 @@ export default function Input({
   // Apply min and max if defined
   if (min && max)
     return (
-      <input
-        className={inputStyling}
-        onChange={formValueUpdate}
-        type={type}
-        value={value}
-        placeholder={children}
-        max={max}
-        min={min}
-        name={name}
-      />
+      <div className="flex items-center gap-[4px]">
+        <input
+          className={inputStyling}
+          onChange={formValueUpdate}
+          type={type}
+          value={value}
+          placeholder={children}
+          max={max}
+          min={min}
+          name={name}
+        />
+        {tooltip && <Tooltip content={tooltip} />}
+      </div>
     );
 
   return (
-    <input
-      className={inputStyling}
-      onChange={formValueUpdate}
-      value={value}
-      type={type}
-      placeholder={children}
-      name={name}
-    />
+    <div className="flex items-center gap-[4px]">
+      <input
+        className={inputStyling}
+        onChange={formValueUpdate}
+        value={value}
+        type={type}
+        placeholder={children}
+        name={name}
+      />
+      {tooltip && <Tooltip content={tooltip} />}
+    </div>
   );
 }

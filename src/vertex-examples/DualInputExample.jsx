@@ -10,8 +10,8 @@ export default function DualInputExample() {
     };
 
     return (
-        <div style={{ marginBottom: '2rem', paddingBottom: '1rem', borderBottom: `1px solid ${vertexThemeColors.border}` }}>
-            <div style={{ padding: '1.5rem', background: vertexThemeColors.surface, borderRadius: '8px', marginBottom: '2rem', maxWidth: '500px' }}>
+            <div className="mb-[2rem] pb-[1rem] border-b-[1px] border-b-[#ADADAF]">
+            <div className="p-[1.5rem] bg-[#1B1B1D] rounded-[8px] mb-[2rem] max-w-[500px]">
                 <DualInput
                     text="Set Battery Limit (%)"
                     name="batteryLimit"
@@ -19,11 +19,11 @@ export default function DualInputExample() {
                     min={0}
                     max={100}
                     formValueUpdate={handleUpdate}
-                    styles={{ text: `text-[${vertexThemeColors.primary}]` }}
+                    className="text-[#769cca]"
                 />
             </div>
 
-            <div style={{ color: vertexThemeColors.textPrimary }}>
+            <div className="text-[#cbd5e1]">
                 <h3 style={{ color: vertexThemeColors.primary, fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Description :</h3>
                 <p style={{ paddingLeft: '1.5rem', fontSize: '1rem', color: vertexThemeColors.textSecondary, lineHeight: '1.5' }}>
                     A synchronized combination of a numeric text input and a range slider. Updating either element updates the shared value. It includes a label text placed intuitively above the slider alongside the text input.
